@@ -8,7 +8,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "BABEL_ENV=test jest --config=jest.config.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,8 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
     "rollup": "^1.16.2",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-uglify": "^6.0.2"

@@ -10,6 +10,8 @@ module.exports = [{
   },
   plugins: [
     babel({
+      envName: 'prod',
+      configFile: './babel.config.js',
       exclude: 'node_modules/**',
     }),
     uglify(),
