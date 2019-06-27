@@ -1,0 +1,37 @@
+{
+  "name": "ramo",
+  "version": "0.1.0",
+  "description": "miniKanren for JavaScript",
+  "main": "dist/bundle.cjs.js",
+  "unpkg": "dist/bundle.umd.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wjlewis/ramo.git"
+  },
+  "keywords": [
+    "relation",
+    "relational",
+    "logic",
+    "miniKanren",
+    "dsl"
+  ],
+  "author": "William Lewis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wjlewis/ramo/issues"
+  },
+  "homepage": "https://github.com/wjlewis/ramo#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "rollup": "^1.16.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-uglify": "^6.0.2"
+  }
+}
