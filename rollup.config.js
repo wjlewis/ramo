@@ -2,7 +2,7 @@ import babel from 'rollup-plugin-babel';
 import { uglify } from 'rollup-plugin-uglify';
 
 module.exports = [{
-  input: 'index.js',
+  input: 'lib/index.js',
   output: {
     file: 'dist/bundle.umd.js',
     format: 'umd',
@@ -17,7 +17,7 @@ module.exports = [{
     uglify(),
   ],
 }, {
-  input: 'index.js',
+  input: 'lib/index.js',
   output: {
     file: 'dist/bundle.cjs.js',
     format: 'cjs',
