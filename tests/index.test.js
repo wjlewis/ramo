@@ -561,3 +561,56 @@ test('TRS 7.13 (ish: associating q with [x, y])', () => {
     [1, 1, 0, 1]
   ]);
 });
+
+test('The second parameter of `run` represents a wildcard Var', () => {
+  const r = run()((q, _) => eq(q, [_, _, _]));
+  expect(r).toEqual([['_0', '_1', '_2']]);
+});
+
+test('We can solve the zebra puzzle', () => {
+  const lefto = Rel((l, r, items) => exist(d => [
+    resto(items, d),
+    conde(
+      [firsto(items, l), firsto(d, r)],
+      lefto(l, r, d)
+    )
+  ]));
+
+  const nexto = Rel((x, y, items) => conde(
+    lefto(x, y, items),
+    lefto(y, x, items)
+  ));
+
+  const membero = Rel((x, items) => conde(
+    firsto(items, x),
+    exist(d => [
+      resto(items, d),
+      membero(x, d)
+    ])
+  ));
+
+  const r = run(1)((res, _) => exist((houses, drinker, owner) => [
+    eq(res, { drinker, owner }),
+    // house schema:
+    // [nationality, color, pet, drink, cigarette]
+    eq(houses, [_, _, _, _, _]),
+    membero(['englishman', 'red', _, _, _], houses),
+    membero(['spaniard', _, 'dog', _, _], houses),
+    membero([_, 'green', _, 'coffee', _], houses),
+    membero(['ukrainian', _, _, 'tea', _], houses),
+    lefto([_, 'ivory', _, _, _], [_, 'green', _, _, _], houses),
+    membero([_, _, 'snails', _, 'winstons'], houses),
+    membero([_, 'yellow', _, _, 'kools'], houses),
+    eq(houses, [_, _, [_, _, _, 'milk', _], _, _]),
+    eq(houses, [['norwegian', _, _, _, _], _, _, _, _]),
+    nexto([_, _, _, _, 'chesterfields'], [_, _, 'fox', _, _], houses),
+    nexto([_, _, _, _, 'kools'], [_, _, 'horse', _, _], houses),
+    membero([_, _, _, 'orange juice', 'lucky strike'], houses),
+    membero(['japanese', _, _, _, 'parliaments'], houses),
+    nexto(['norwegian', _, _, _, _], [_, 'blue', _, _, _], houses),
+    membero([owner, _, 'zebra', _, _], houses),
+    membero([drinker, _, _, 'water', _], houses),
+  ]));
+
+  expect(r).toEqual([{ drinker: 'norwegian', owner: 'japanese' }]);
+});
