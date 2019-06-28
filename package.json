@@ -1,6 +1,6 @@
 {
   "name": "ramo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "miniKanren for JavaScript",
   "main": "dist/bundle.cjs.js",
   "unpkg": "dist/bundle.umd.js",
