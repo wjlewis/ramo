@@ -323,7 +323,7 @@ Here is a classic AI puzzle (snarfed from Norvig's *PAIP*):
 The questions are: who drinks water and who owns the zebra?
 
 We can express these conditions as a series of relations, and then run the appropriate goal to solve the puzzle.
-Most statements have the form: "<so-and-so> goes with <so-and-so>", indicating some partial information about a house.
+Most statements have the form: "such-and-such goes with such-and-such", indicating some partial information about a house.
 If we represent each house as a list with the scheme: `[owner, pet, cigarette, drink, color]`, then (2) asserts that `membero(['Englishman', ep, ec, ed, 'red'], houses)`, where `houses` is a logic variable representing the list of houses, and `ep`, `ec`, and `ed` represent the Englishman's pet, cigarette choice, and drink, respectively.
 This solution will work, but it will require a large number of fresh variables (a la `exist((ep, ec, ed, sc, sp, ...) => ...)`).
 Furthermore, we aren't going to actually use these variable to construct our solution.
@@ -431,13 +431,14 @@ run()((q, _) => eq(q, [_, _, _, _]))
 
 If lists are the heart of Scheme, then object literals are the heart of JavaScript.
 And so, as the canonical `miniKanren` implementations lean heavily on the list (well, the *cons-cell*), `ramo` is built atop the object.
-There is one unfortunate consequence of this arrangement: it would be convenient to use JavaScript Arrays to represent lists, but they offer no easy way to extract their parts (*car*/*cdr*, or *first*/*rest*).
+There is one unfortunate consequence of this arrangement: it would be convenient to use JavaScript Arrays to represent lists, but there is no easy way to treat them in the usual inductive sense.
 Objects are convenient because we can, in a sense, destructure them via unification; however, Arrays do not share this property.
 For this reason, `ramo` "desugars" JavaScript Arrays into a *cons-cell* representation that is used internally.
 During the reification process, these cons-cells are transformed back into Arrays if this is possible.
 These cons-cells use private `Symbol`s as their keys, so there is no worry about having a non-Array value inadvertently treated as a list.
 To allow you to generate these cons-cells yourself, `ramo` exports three functions: `cons`, `first`, and `rest`.
 The function `cons` constructs a cons-cell, `first` extracts a cons-cell's *car*, and `rest` extracts the *cdr*.
+Lastly, the empty Array (`[]`) represents the empty list.
 
 ## Looking Forward
 
