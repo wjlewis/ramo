@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "outDir": "dist",
+    "declaration": true
+  },
+  "include": ["lib/**/*.ts"]
+}

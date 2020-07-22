@@ -12,8 +12,18 @@ const firsto = Rel((p, a) => exist(d => conso(a, d, p)));
 const resto = Rel((p, d) => exist(a => conso(a, d, p)));
 
 export {
-  run, Rel,
-  succeedo, failo, eq, conde, exist,
-  cons, first, rest,
-  nilo, conso, firsto, resto
+  run,
+  Rel,
+  succeedo,
+  failo,
+  eq,
+  conde,
+  exist,
+  cons,
+  first,
+  rest,
+  nilo,
+  conso,
+  firsto,
+  resto,
 };
